@@ -10,7 +10,10 @@ document.addEventListener("click", (event) => {
     const id = event.target.dataset.id;
     const newTitle = prompt("новый заголовок");
     if (!newTitle) return;
-    // change(id, newTitle);
+    console.log("work");
+    change(id, newTitle).then(() => {
+      event.target.closest("li").querySelector("span").textContent = newTitle;
+    });
   }
 });
 
@@ -25,5 +28,8 @@ async function change(id, title) {
       id,
       title,
     }),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }

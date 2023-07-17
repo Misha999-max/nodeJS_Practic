@@ -20,11 +20,13 @@ async function addNote(title) {
 async function changeTitle(id, title) {
   const notes = await getNotes();
   console.log(notes);
-  // const newNotes = notes.filter((not) => {
-  //   if (not.id === id) {
-  //     not.title = title;
-  //   }
-  // });
+  const newNotes = notes.map((not) => {
+    if (not.id === id) {
+      return { ...not, title };
+    } else {
+      return not;
+    }
+  });
 
   await saveNotes(newNotes);
   console.log(newNotes);
